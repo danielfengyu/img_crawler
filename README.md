@@ -3,6 +3,8 @@
 
 WebCollector教程：[https://www.oschina.net/p/webcollector?fromerr=uguyLrsq](https://www.oschina.net/p/webcollector?fromerr=uguyLrsq)
 
+国内镜像：[http://git.oschina.net/webcollector/WebCollector](http://git.oschina.net/webcollector/WebCollector)
+
 # 获取
 git clone https://github.com/danielfengyu/img_crawler.git
 
