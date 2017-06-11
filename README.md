@@ -1,5 +1,7 @@
 # img_crawler
-这是一个基于开源爬虫框架WebCollector的网络图片爬虫，可以爬取指定网站的图片，并按网站的图片存放路径把图片存放到当前工程的根目录下。
+这是一个基于开源网络爬虫框架[WebCollector](https://github.com/CrawlScript/WebCollector)的网络图片爬虫，可以爬取指定网站的图片，并按网站的图片存放路径把图片存放到当前工程的根目录下。
+
+WebCollector教程：[https://www.oschina.net/p/webcollector?fromerr=uguyLrsq](https://www.oschina.net/p/webcollector?fromerr=uguyLrsq)
 
 # 获取
 git clone https://github.com/danielfengyu/img_crawler.git
