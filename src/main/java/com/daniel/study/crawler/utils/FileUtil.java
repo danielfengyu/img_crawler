@@ -50,7 +50,7 @@ public class FileUtil
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				LOGGER.error( "close file error:", e );
 			}
 			try
 			{
@@ -61,7 +61,7 @@ public class FileUtil
 			}
 			catch (IOException e)
 			{
-				e.printStackTrace();
+				LOGGER.error( "close file error:", e );
 			}
 		}
 	}

@@ -9,6 +9,9 @@ package com.daniel.study.crawler.constant;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.daniel.study.crawler.utils.PropertiesUtil;
 
 
@@ -21,6 +24,7 @@ import com.daniel.study.crawler.utils.PropertiesUtil;
  */
 public class CrawlerConstant
 {
+	private static final Logger lg = LoggerFactory.getLogger(CrawlerConstant.class);
 	// 种子路径
 	public static String SEED_PATH;
 
@@ -67,7 +71,7 @@ public class CrawlerConstant
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			lg.error("read config file failed:",e);
 		}
 	}
 }
