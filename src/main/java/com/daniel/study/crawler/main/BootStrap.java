@@ -23,6 +23,7 @@ public class BootStrap
 		MMImgCrawler crawler = new MMImgCrawler( CrawlerConstant.CRAWLDATUMS_DIR, true );
 		Config.MAX_RECEIVE_SIZE = 10000 * 10000 * 10;
 		crawler.addSeed( CrawlerConstant.SEED_PATH, true );
+		//可以添加多个正则
 		crawler.addRegex( CrawlerConstant.URL_REGEX );
 		crawler.setResumable( true );
 		crawler.setThreads( CrawlerConstant.THREAD_NUMBER );
