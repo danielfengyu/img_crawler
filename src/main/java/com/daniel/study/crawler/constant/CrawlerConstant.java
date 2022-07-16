@@ -45,6 +45,14 @@ public class CrawlerConstant
 
 	// 爬取深度
 	public static Integer DEPTH;
+	/**
+	 * 资源类型
+	 */
+	public static  String ELEMENT_TYPE;
+
+	public static String TRAVEL_CONTENT_TYPE;
+
+	public static String DOWNLOAD_CONTENT_TYPE;
 	static
 	{
 		init();
@@ -68,6 +76,9 @@ public class CrawlerConstant
 			CRAWLDATUMS_DIR = properties.getProperty( "crawldatums_dir" );
 			THREAD_NUMBER = Integer.parseInt( properties.getProperty( "thread_number" ).trim() );
 			DEPTH = Integer.parseInt( properties.getProperty( "depth" ).trim() );
+			ELEMENT_TYPE=properties.getProperty("resource.element.type").trim();
+			TRAVEL_CONTENT_TYPE=properties.getProperty("travel.content-type").trim();
+			DOWNLOAD_CONTENT_TYPE=properties.getProperty("download.content-type").trim();
 		}
 		catch (IOException e)
 		{
