@@ -61,7 +61,9 @@ public class MMImgCrawler extends BreadthCrawler {
     public void visit(Page page, CrawlDatums next) {
         String url = page.url();
         String contentType = page.contentType();
-
+        if(contentType.indexOf(';')>0){
+            contentType=contentType.split(";")[0];
+        }
         if (travelContentTypes.contains(contentType)) {
             resourceTypes.forEach(type -> {
                 Elements elements = page.select(type);
