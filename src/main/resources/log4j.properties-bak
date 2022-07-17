@@ -1,0 +1,97 @@
+log4j.rootLogger=info, stdout, log, errorlog
+#################### log four level ######################
+#                ERROR\u3001WARN\u3001INFO\u3001DEBUG
+#                1\u3001ERROR \u4E3A\u4E25\u91CD\u9519\u8BEF \u4E3B\u8981\u662F\u7A0B\u5E8F\u7684\u9519\u8BEF
+#                2\u3001WARN \u4E3A\u4E00\u822C\u8B66\u544A\uFF0C\u6BD4\u5982session\u4E22\u5931
+#                3\u3001INFO \u4E3A\u4E00\u822C\u8981\u663E\u793A\u7684\u4FE1\u606F\uFF0C\u6BD4\u5982\u767B\u5F55\u767B\u51FA
+#                4\u3001DEBUG \u4E3A\u7A0B\u5E8F\u7684\u8C03\u8BD5\u4FE1\u606F
+###Output to Console ###
+#####################define the target of output stream ,five target:################
+#            \u4E94\u4E2A\u8F93\u51FA\u76EE\u7684\u5730
+#            1.org.apache.log4j.ConsoleAppender\uFF08\u63A7\u5236\u53F0\uFF09
+#            2.org.apache.log4j.FileAppender\uFF08\u6587\u4EF6\uFF09
+#            3.org.apache.log4j.DailyRollingFileAppender\uFF08\u6BCF\u5929\u4EA7\u751F\u4E00\u4E2A\u65E5\u5FD7\u6587\u4EF6\uFF09
+#            4.org.apache.log4j.RollingFileAppender\uFF08\u6587\u4EF6\u5927\u5C0F\u8FBE\u5230\u6307\u5B9A\u5C3A\u5BF8\u65F6\u4EA7\u751F\u4E00\u4E2A\u65B0\u7684\u6587\u4EF6\uFF09
+#            5.org.apache.log4j.WriterAppender\uFF08\u5C06\u65E5\u5FD7\u4FE1\u606F\u4EE5\u6D41\u683C\u5F0F\u53D1\u9001\u5230\u4EFB\u610F\u6307\u5B9A\u7684\u5730\u65B9\uFF09
+#######################################################################
+log4j.appender.stdout = org.apache.log4j.ConsoleAppender 
+log4j.appender.stdout.Target = System.out
+
+#####################layout style #####################################
+#           1.org.apache.log4j.HTMLLayout\uFF08\u4EE5HTML\u8868\u683C\u5F62\u5F0F\u5E03\u5C40\uFF09
+#           2.org.apache.log4j.PatternLayout\uFF08\u53EF\u4EE5\u7075\u6D3B\u5730\u6307\u5B9A\u5E03\u5C40\u6A21\u5F0F\uFF09\uFF0C
+#           3.org.apache.log4j.SimpleLayout\uFF08\u5305\u542B\u65E5\u5FD7\u4FE1\u606F\u7684\u7EA7\u522B\u548C\u4FE1\u606F\u5B57\u7B26\u4E32\uFF09\uFF0C
+#           4.org.apache.log4j.TTCCLayout \uFF08\u5305\u542B\u65E5\u5FD7\u4EA7\u751F\u7684\u65F6\u95F4\u3001\u7EBF\u7A0B\u3001\u7C7B\u522B\u7B49\u7B49\u4FE1\u606F\uFF09
+#######################################################################
+log4j.appender.stdout.layout = org.apache.log4j.PatternLayout
+
+####################log out pattern####################################
+#log4j.appender.A1.layout.ConversionPattern=%-4r %-5p %d{yyyy-MM-dd HH:mm:ssS} %c %m%n
+#######################################################################
+log4j.appender.stdout.layout.ConversionPattern =  %d{ABSOLUTE} [ %t ] [ %p ]:%L - %m%n
+
+### Log ###  
+log4j.appender.log1 = org.apache.log4j.RollingFileAppender
+log4j.appender.log1.File =./logs/log.log
+log4j.appender.log1.Append = true
+log4j.appender.log1.Threshold = INFO
+log4j.appender.log1.MaxFileSize = 100MB
+log4j.appender.file.MaxBackupIndex = 10
+#log4j.appender.log1.DatePattern='.'yyyy-MM-dd
+log4j.appender.log1.layout = org.apache.log4j.PatternLayout
+log4j.appender.log1.layout.ConversionPattern = [%p] [%d{yyyy-MM-dd HH:mm:ss}] [%c]%m%n
+#\u6309\u65E5\u671F\u8F93\u51FA
+log4j.appender.log = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.log.File =./logs/log.log
+log4j.appender.log.Append = true
+log4j.appender.log.Threshold = INFO
+log4j.appender.log.DatePattern='.'yyyy-MM-dd
+log4j.appender.log.layout = org.apache.log4j.PatternLayout
+log4j.appender.log.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} [ %t ] %m%n
+
+### Error ###
+log4j.appender.errorlog = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.errorlog.File = ./logs/errorlog.log
+log4j.appender.errorlog.Append = true
+log4j.appender.errorlog.Threshold = ERROR 
+log4j.appender.errorlog.DatePattern='.'yyyy-MM-dd
+log4j.appender.errorlog.layout = org.apache.log4j.PatternLayout
+log4j.appender.errorlog.layout.ConversionPattern =%-d{yyyy-MM-dd HH:mm:ss} [ %t ] %m%n
+
+
+################################## \u63A7\u5236\u53F0\u9009\u9879 #######################################################
+#       Threshold=DEBUG:\u6307\u5B9A\u65E5\u5FD7\u6D88\u606F\u7684\u8F93\u51FA\u6700\u4F4E\u5C42\u6B21\u3002
+#       ImmediateFlush=true:\u9ED8\u8BA4\u503C\u662Ftrue,\u610F\u8C13\u7740\u6240\u6709\u7684\u6D88\u606F\u90FD\u4F1A\u88AB\u7ACB\u5373\u8F93\u51FA\u3002
+#       Target=System.err\uFF1A\u9ED8\u8BA4\u60C5\u51B5\u4E0B\u662F\uFF1ASystem.out,\u6307\u5B9A\u8F93\u51FA\u63A7\u5236\u53F0
+#       FileAppender \u9009\u9879
+#       Threshold=DEBUF:\u6307\u5B9A\u65E5\u5FD7\u6D88\u606F\u7684\u8F93\u51FA\u6700\u4F4E\u5C42\u6B21\u3002
+#       ImmediateFlush=true:\u9ED8\u8BA4\u503C\u662Ftrue,\u610F\u8C13\u7740\u6240\u6709\u7684\u6D88\u606F\u90FD\u4F1A\u88AB\u7ACB\u5373\u8F93\u51FA\u3002
+#       File=mylog.txt:\u6307\u5B9A\u6D88\u606F\u8F93\u51FA\u5230mylog.txt\u6587\u4EF6\u3002
+#       Append=false:\u9ED8\u8BA4\u503C\u662Ftrue,\u5373\u5C06\u6D88\u606F\u589E\u52A0\u5230\u6307\u5B9A\u6587\u4EF6\u4E2D\uFF0Cfalse\u6307\u5C06\u6D88\u606F\u8986\u76D6\u6307\u5B9A\u7684\u6587\u4EF6\u5185\u5BB9\u3002
+#       RollingFileAppender \u9009\u9879
+#       Threshold=DEBUG:\u6307\u5B9A\u65E5\u5FD7\u6D88\u606F\u7684\u8F93\u51FA\u6700\u4F4E\u5C42\u6B21\u3002
+#       ImmediateFlush=true:\u9ED8\u8BA4\u503C\u662Ftrue,\u610F\u8C13\u7740\u6240\u6709\u7684\u6D88\u606F\u90FD\u4F1A\u88AB\u7ACB\u5373\u8F93\u51FA\u3002
+#       File=mylog.txt:\u6307\u5B9A\u6D88\u606F\u8F93\u51FA\u5230mylog.txt\u6587\u4EF6\u3002
+#       Append=false:\u9ED8\u8BA4\u503C\u662Ftrue,\u5373\u5C06\u6D88\u606F\u589E\u52A0\u5230\u6307\u5B9A\u6587\u4EF6\u4E2D\uFF0Cfalse\u6307\u5C06\u6D88\u606F\u8986\u76D6\u6307\u5B9A\u7684\u6587\u4EF6\u5185\u5BB9\u3002
+#       MaxFileSize=100KB: \u540E\u7F00\u53EF\u4EE5\u662FKB, MB \u6216\u8005\u662F GB. \u5728\u65E5\u5FD7\u6587\u4EF6\u5230\u8FBE\u8BE5\u5927\u5C0F\u65F6\uFF0C\u5C06\u4F1A\u81EA\u52A8\u6EDA\u52A8\uFF0C\u5373\u5C06\u539F\u6765\u7684\u5185\u5BB9\u79FB\u5230mylog.log.1\u6587\u4EF6\u3002
+#       MaxBackupIndex=2:\u6307\u5B9A\u53EF\u4EE5\u4EA7\u751F\u7684\u6EDA\u52A8\u6587\u4EF6\u7684\u6700\u5927\u6570\u3002
+#       log4j.appender.A1.layout.ConversionPattern=%-4r %-5p %d{yyyy-MM-dd HH:mm:ssS} %c %m%n
+##################################################################################################
+
+
+
+########################## .\u65E5\u5FD7\u4FE1\u606F\u683C\u5F0F\u4E2D\u51E0\u4E2A\u7B26\u53F7\u6240\u4EE3\u8868\u7684\u542B\u4E49 ############################################
+#       -X\u53F7: X\u4FE1\u606F\u8F93\u51FA\u65F6\u5DE6\u5BF9\u9F50\uFF1B
+#       %p: \u8F93\u51FA\u65E5\u5FD7\u4FE1\u606F\u4F18\u5148\u7EA7\uFF0C\u5373DEBUG\uFF0CINFO\uFF0CWARN\uFF0CERROR\uFF0CFATAL,
+#       %d: \u8F93\u51FA\u65E5\u5FD7\u65F6\u95F4\u70B9\u7684\u65E5\u671F\u6216\u65F6\u95F4\uFF0C\u9ED8\u8BA4\u683C\u5F0F\u4E3AISO8601\uFF0C\u4E5F\u53EF\u4EE5\u5728\u5176\u540E\u6307\u5B9A\u683C\u5F0F\uFF0C\u6BD4\u5982\uFF1A%d{yyy MMM dd HH:mm:ss,SSS}\uFF0C\u8F93\u51FA\u7C7B\u4F3C\uFF1A2002\u5E7410\u670818\u65E5 22\uFF1A10\uFF1A28\uFF0C921
+#       %r: \u8F93\u51FA\u81EA\u5E94\u7528\u542F\u52A8\u5230\u8F93\u51FA\u8BE5log\u4FE1\u606F\u8017\u8D39\u7684\u6BEB\u79D2\u6570
+#       %c: \u8F93\u51FA\u65E5\u5FD7\u4FE1\u606F\u6240\u5C5E\u7684\u7C7B\u76EE\uFF0C\u901A\u5E38\u5C31\u662F\u6240\u5728\u7C7B\u7684\u5168\u540D
+#       %t: \u8F93\u51FA\u4EA7\u751F\u8BE5\u65E5\u5FD7\u4E8B\u4EF6\u7684\u7EBF\u7A0B\u540D
+#       %l: \u8F93\u51FA\u65E5\u5FD7\u4E8B\u4EF6\u7684\u53D1\u751F\u4F4D\u7F6E\uFF0C\u76F8\u5F53\u4E8E%C.%M(%F:%L)\u7684\u7EC4\u5408,\u5305\u62EC\u7C7B\u76EE\u540D\u3001\u53D1\u751F\u7684\u7EBF\u7A0B\uFF0C\u4EE5\u53CA\u5728\u4EE3\u7801\u4E2D\u7684\u884C\u6570\u3002\u4E3E\u4F8B\uFF1ATestlog4.main (TestLog4.java:10)
+#       %x: \u8F93\u51FA\u548C\u5F53\u524D\u7EBF\u7A0B\u76F8\u5173\u8054\u7684NDC(\u5D4C\u5957\u8BCA\u65AD\u73AF\u5883),\u5C24\u5176\u7528\u5230\u50CFjava servlets\u8FD9\u6837\u7684\u591A\u5BA2\u6237\u591A\u7EBF\u7A0B\u7684\u5E94\u7528\u4E2D\u3002
+#       %%: \u8F93\u51FA\u4E00\u4E2A"%"\u5B57\u7B26
+#       %F: \u8F93\u51FA\u65E5\u5FD7\u6D88\u606F\u4EA7\u751F\u65F6\u6240\u5728\u7684\u6587\u4EF6\u540D\u79F0
+#       %L: \u8F93\u51FA\u4EE3\u7801\u4E2D\u7684\u884C\u53F7
+#       %m: \u8F93\u51FA\u4EE3\u7801\u4E2D\u6307\u5B9A\u7684\u6D88\u606F,\u4EA7\u751F\u7684\u65E5\u5FD7\u5177\u4F53\u4FE1\u606F
+#       %n: \u8F93\u51FA\u4E00\u4E2A\u56DE\u8F66\u6362\u884C\u7B26\uFF0CWindows\u5E73\u53F0\u4E3A"/r/n"\uFF0CUnix\u5E73\u53F0\u4E3A"/n"\u8F93\u51FA\u65E5\u5FD7\u4FE1\u606F\u6362\u884C
+##################################################################################################
