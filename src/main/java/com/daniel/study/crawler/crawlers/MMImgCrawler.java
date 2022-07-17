@@ -119,8 +119,12 @@ public class MMImgCrawler extends BreadthCrawler {
     private void downloadPageContentAsFile(Page page, String fileName) {
         try {
             File img = new File(downloadDir, fileName);
-            FileUtils.write(img, page.content());
-            LOGGER.info("保存图片：{}到：{}", page.url(), img);
+            if(!img.exists()){
+                FileUtils.write(img, page.content());
+                LOGGER.info("保存资源：{}到：{}", page.url(), img);
+            }else{
+                LOGGER.info("资源：{}已保存", page.url());
+            }
         } catch (FileNotFoundException e) {
             LOGGER.error("file not find error:", e);
         } catch (IOException e) {
